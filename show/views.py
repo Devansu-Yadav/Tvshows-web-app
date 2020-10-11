@@ -1,7 +1,9 @@
 
 
 # Create your views here.
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404
+
+from django.urls import reverse
 
 from django.contrib.auth import login,logout,authenticate
 
@@ -22,6 +24,7 @@ def login_view(request):
         # Attempt to sign user in
         email = request.POST["email"]
         password = request.POST["password"]
+        global user
         user = authenticate(request, email=email, password=password)
 
         # Check if authentication successful

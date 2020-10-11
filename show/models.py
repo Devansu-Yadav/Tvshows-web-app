@@ -4,9 +4,9 @@ from django.db import models
 class Show(models.Model):
     """Model representing a tv show"""
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-    genre = models.CharField(max_length=50)
-    next_ep = models.DateField()
+    description = models.CharField(max_length=200, null=True)
+    genre = models.CharField(max_length=50, null=True)
+    next_ep = models.DateField(null=True)
 
     def __str__(self):
         """String for representing the Model object."""
