@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import int_list_validator
 
 # Create your models here.
 class Show(models.Model):
@@ -12,12 +14,9 @@ class Show(models.Model):
         """String for representing the Model object."""
         return self.name
 
-class User(models.Model):
-    """Model representing a User"""
-    name = models.CharField(max_length=30)
-    email = models.CharField(max_length=50)
-    user_data_list = [] 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ep_list = models.CharField(validators=[int_list_validator], max_length=100)   
 
     def __str__(self):
-        """String for representing the Model object."""
-        return self.name
+        return self.user.username
